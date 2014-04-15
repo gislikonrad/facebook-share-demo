@@ -6,6 +6,7 @@
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="@model.url" />
 		<meta property="og:description" content="@model.description" />
+		<meta property="fb:app_id" content="293550957470461" />
 
 	</head>
 	<body>
