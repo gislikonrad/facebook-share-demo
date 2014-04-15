@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<title>Facebook share test</title>
+	</head>
+	<body>
+		<table>
+		@model.query.forEach(function(q){
+			<tr>
+				<td>@q.key</td>
+				<td>@q.value</td>
+			</tr>
+		})
+		</table>
+	</body>
+</html>
