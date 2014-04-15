@@ -4,7 +4,7 @@
 
 		<meta property="og:title" content="@model.title" />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="@mode.url" />
+		<meta property="og:url" content="@model.url" />
 		<meta property="og:description" content="@model.description" />
 
 	</head>
@@ -12,17 +12,5 @@
 		<div>Title: @model.title</div>
 		<div>Description: @model.description</div>
 
-		<table>
-		<tr>
-			<th>Query parameter key</th>
-			<th>Query parameter value</th>
-		</tr>
-		@model.query.forEach(function(q){
-			<tr>
-				<td>@q.key</td>
-				<td>@q.value</td>
-			</tr>
-		})
-		</table>
 	</body>
 </html>
