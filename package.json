@@ -1,16 +1,16 @@
 {
   "name": "base",
-  "version": "0.0.0",
-  "description": "A base for creating angular node apps quickly",
+  "version": "0.10.26",
+  "description": "An app to demo how to do facebook sharing with query strings",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --debug server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "test"
   ],
-  "author": "Peter Short",
+  "author": "Gísli Konráð",
   "license": "BSD-2-Clause",
   "dependencies": {
     "express": "~4.0.0",
