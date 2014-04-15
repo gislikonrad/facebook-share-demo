@@ -18,22 +18,36 @@ app.get('/', function(req, res){
 		regex = /^facebookexternalhit\/1\.[01]/gim,
 		isFacebook = regex.test(useragent),
 		a = 0,
-		model = [];
+		query = [],
+		url = req.protocol + '://' + req.get('host') + req.url,
+		title = 'Facebook-share-demo',
+		description = 'This is the page as it should be for a normal user';
 		
 	_.transform(req.query, function(o, value, key){
 		this.push({ key: key, value: value});
-	}, a, model);
+	}, a, query);	
 	
-	if(model.length){
+	if(query.length){		
 		if(isFacebook){
-			return res.render('index', {query: model});			
+			title = 'This is a share with a query string.';
+			description = 'The query string included these parameters: ';
+			for(var i = 0; i < query.length; i++) {
+				if(i > 0){
+					description += ', ';
+				}
+				description += query[i].key;
+				description += '=';
+				description += query[i].value;
+				
+			}
+			return res.render('index', {query: query, title: title, description: description, url: url});			
 		}
 		else {
 			return res.redirect('/');
 		}
 	}
 	else {
-  		return res.render('index', {query: [] });
+  		return res.render('index', {query: [], title: title, description: description, url: url });
 	}
 	
 });
@@ -44,3 +58,4 @@ app.listen(port, function() {
   console.log('Listening on ' + port);
 });
 
+

@@ -2,19 +2,21 @@
 	<head>
 		<title>Facebook share demo</title>
 
-		<meta property="og:title" content="Facebook share demo" />
+		<meta property="og:title" content="@model.title" />
 		<meta property="og:type" content="website" />
-		<meta property="og:image" content="https://fjarmalahreysti.is/img/medals/share/as_1200x630.png" />
-		<meta property="og:image" content="https://fjarmalahreysti.is/img/medals/share/as_600x600.png" />
-		<meta property="og:image" content="https://fjarmalahreysti.is/img/splash_1200x630.png" />
-		<meta property="og:image" content="https://fjarmalahreysti.is/img/splash_600x600.png" />
-		<meta property="og:url" content="http://fjarmalahreysti.is/?username=test&amp;medal=as&amp;userid=1" />
-		<meta property="og:description" content="Fj&#225;rm&#225;lahreysti er n&#253;r og spennandi spurningaleikur fr&#225; Landsbankanum sem er &#230;tla&#240; a&#240; efla fj&#225;rm&#225;lal&#230;si ungmenna." />
-		<meta property="fb:app_id" content="427325474079723" />
+		<meta property="og:url" content="@mode.url" />
+		<meta property="og:description" content="@model.description" />
 
 	</head>
 	<body>
+		<div>Title: @model.title</div>
+		<div>Description: @model.description</div>
+
 		<table>
+		<tr>
+			<th>Query parameter key</th>
+			<th>Query parameter value</th>
+		</tr>
 		@model.query.forEach(function(q){
 			<tr>
 				<td>@q.key</td>
