@@ -24,7 +24,7 @@
 				<h1>Try it out <small>Create a share url for this site.</small></h1>
 			</div>
 			<p class="lead">
-				Facebook share url: <a href="{{buildUrl()}}" target="_blank">{{buildUrl()}}</a>
+				Your Facebook share url: <br/><a href="{{buildUrl()}}" target="_blank">{{buildUrl()}}</a>
 			</p>
 
 			<div class="row" style="padding-bottom:10px">
@@ -47,17 +47,17 @@
 
 			<table class="table table-condensed" ng-show="queryParameters.length > 0">
 				<thead>
-					<th>#</th>
-					<th>Key</th>
-					<th>Value</th>
+					<th style="width:5%">#</th>
+					<th style="width:44%">Key</th>
+					<th style="width:40%">Value</th>
 					<th>&nbsp;</th>
 				</thead>
 				<tbody>
 					<tr ng-repeat="parameter in queryParameters">
-						<td>{{$index}}</td>
+						<td>{{$index + 1}}</td>
 						<td>{{parameter.key}}</td>
 						<td>{{parameter.value}}</td>
-						<td class="pull-right"><button type="button" class="btn btn-danger btn-xs" ng-click="removeParameter($index)">Remove</button></td>
+						<td><button type="button" class="btn btn-danger btn-xs pull-right" ng-click="removeParameter($index)">Remove</button></td>
 					</tr>
 				</tbody>
 			</table>
