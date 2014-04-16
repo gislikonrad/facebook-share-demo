@@ -29,8 +29,8 @@ app.get('/', function(req, res){
 	
 	if(query.length){		
 		if(isFacebook){
-			title = 'This is a share with a query string.';
-			description = 'The query string included these parameters: ';
+			title = 'This is a shared url with a query string that was created on facebook-share-demo.herokuapp.com.';
+			description = 'The query string in the url included these parameters: ';
 			for(var i = 0; i < query.length; i++) {
 				if(i > 0){
 					description += ', ';
@@ -58,4 +58,4 @@ app.listen(port, function() {
   console.log('Listening on ' + port);
 });
 
-
+
