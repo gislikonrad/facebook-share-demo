@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
 	<head>
 		<title>Facebook share demo</title>
 
@@ -8,10 +9,90 @@
 		<meta property="og:description" content="@model.description" />
 		<meta property="fb:app_id" content="293550957470461" />
 
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	</head>
-	<body>
-		<div>Title: @model.title</div>
-		<div>Description: @model.description</div>
-		<div><a href="https://github.com/gislikonrad/facebook-share-demo" target="_blank">View this on github</a></div>
+	<body ng-controller="UrlBuilderController">
+		<div class="jumbotron">
+			<div class="container">
+				<h1>@model.title</h1>
+				<p>@model.description</p>
+				<p><a class="btn btn-primary btn-lg" role="button" href="https://github.com/gislikonrad/facebook-share-demo" target="_blank">View this repository on Github</a></p>
+			</div>
+		</div>
+		<div class="container">
+			<div class="page-header">
+				<h1>Try it out <small>Create a share url for this site.</small></h1>
+			</div>
+			<p class="lead">
+				Facebook share url: <a href="{{buildUrl()}}" target="_blank">{{buildUrl()}}</a><br />
+				<small>Try spoofing your user-agent string to be <strong>facebookexternalhit/1.0</strong> and visiting your created link. <em>That is how facebook sees it.</em></small>
+			</p>
+
+			<div class="row" style="padding-bottom:10px">
+				<div class="col-md-5">
+					<div class="input-group">
+					  <span class="input-group-addon">Key</span>
+					  <input type="text" class="form-control" ng-model="key" placeholder="Query string parameter key">
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="input-group">
+					  <span class="input-group-addon">Value</span>
+					  <input type="text" class="form-control" ng-model="value" placeholder="Query string parameter value">
+					</div>
+				</div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-success btn-sm pull-right" ng-click="addQueryParameter(key, value)">Add</button>
+				</div>
+			</div>
+
+			<table class="table table-condensed" ng-show="queryParameters.length > 0">
+				<thead>
+					<th>#</th>
+					<th>Key</th>
+					<th>Value</th>
+					<th>&nbsp;</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="parameter in queryParameters">
+						<td>{{$index}}</td>
+						<td>{{parameter.key}}</td>
+						<td>{{parameter.value}}</td>
+						<td class="pull-right"><button type="button" class="btn btn-danger btn-xs" ng-click="removeParameter($index)">Remove</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+		<script>
+			angular
+				.module('app', [])
+				.controller('UrlBuilderController', function($scope, $window){
+					$scope.queryParameters = [];
+					$scope.addQueryParameter = function(key, value){
+						if(key) {
+							$scope.queryParameters.push({ key: key, value: value});
+							$scope.key = '';
+							$scope.value = '';
+						}
+					};
+					$scope.removeParameter = function(index) {
+						$scope.queryParameters.splice(index, 1);
+					};
+					$scope.buildUrl = function(){
+						var baseUrl = $window.location.origin,
+							query = (function(){
+								var strs = [];
+								angular.forEach($scope.queryParameters, function(p){
+									strs.push(!!p.value ? encodeURIComponent(p.key) + '=' + encodeURIComponent(p.value) : encodeURIComponent(p.key));
+								});
+								return strs.join('&');
+							})();
+
+						if(!query) return baseUrl;
+						return baseUrl + '?' + query;
+					};
+				});
+		</script>
 	</body>
 </html>
