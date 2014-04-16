@@ -61,9 +61,9 @@
 					</tr>
 				</tbody>
 			</table>
-			
+
 			<small>Try spoofing your user-agent string to be <strong>facebookexternalhit/1.0</strong> and visiting your created url. <em>That is how facebook sees it.</em></small><br />			
-			<small>You can also try linting your created url on <a href="{{buildLintUrl()}}" target="_blank">Facebook</a></small><br />			
+			<small>You can also try linting your created url on <a href="{{buildLintUrl()}}" target="_blank">Facebook</a>. Remember to press the DEBUG on the linter.</small><br />			
 			<small><a href="{{buildShareUrl()}}" target="_blank">Share your created url on Facebook</a></small>
 		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
